@@ -39,32 +39,62 @@ public class Monster {
     }
 
     public static boolean taskMonster() {
-        System.out.println("Решите задачу:");
-        int x = r.nextInt(50);
-        int y = r.nextInt(50);
-        int trueAnswer = x + y;
-        int count = 1;
-        System.out.println("Реши пример: " + x + " + " + y + " = ?");
+        System.out.println("Решите задачу: ");
+
+        int x, y, z, trueAnswer;
+        int count = 3 - Main.difficultGame;
+        if (count < 1) count = 1;
+
+
+        if (Main.difficultGame == 1) {
+            x = r.nextInt(10);
+            y = r.nextInt(10);
+            trueAnswer = x + y;
+            System.out.println(x + " + " + y + " = ?");
+        } else if (Main.difficultGame == 2) {
+            x = r.nextInt(15);
+            y = r.nextInt(10);
+            trueAnswer = x + y;
+            System.out.println(x + " + " + y + " = ?");
+        } else if (Main.difficultGame == 3) {
+            x = r.nextInt(10);
+            y = r.nextInt(10);
+            trueAnswer = x * y;
+            System.out.println(x + " * " + y + " = ?");
+        } else if (Main.difficultGame == 4) {
+            x = r.nextInt(10);
+            y = r.nextInt(10);
+            z = r.nextInt(10);
+            trueAnswer = x + y - z;
+            System.out.println(x + " + " + y + " - " + z + " = ?");
+        } else {
+            x = r.nextInt(8);
+            y = r.nextInt(8);
+            z = r.nextInt(15);
+            trueAnswer = x * y + z;
+            System.out.println(x + " * " + y + " + " + z + " = ?");
+        }
+
         System.out.println("Количество попыток: " + count);
         Scanner sc = new Scanner(System.in);
-        int ans = sc.nextInt();
-        if (count > 0) {
+
+        while (count > 0) {
+            int ans = sc.nextInt();
             if (trueAnswer == ans) {
                 System.out.println("Верно! Ты победил монстра");
                 Monster.monsterDefeated++;
                 return true;
             } else {
                 System.out.println("Ответ неверный!");
-                Person.live--;
                 count--;
-
-                System.out.println("Количество попыток: " + count);
-
-                System.out.println("Ты проиграл эту битву!");
-
-                return false;
+                if (count > 0) {
+                    System.out.println("Осталось попыток: " + count);
+                }
             }
         }
+
+        System.out.println("Ты проиграл эту битву!");
+        Person.live--;
         return false;
     }
 }

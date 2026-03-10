@@ -2,6 +2,8 @@
 import java.util.Random;
 import java.util.Scanner;
 public class Main {
+    public static int difficultGame;
+
     public static void main (String[] args) {
         int step = 0;
         int castleY = 0;
@@ -34,7 +36,8 @@ public class Main {
             case "да":
                 System.out.println("Погнали!");
                 System.out.println("Выбери уровень сложности игры(от 1 до 5):");
-                int difficultGame = scanner.nextInt();
+                int difficultGame;
+                difficultGame = scanner.nextInt();
 
                 while (true) {
                     if (difficultGame <= 5 && difficultGame >= 1) {
@@ -61,27 +64,31 @@ public class Main {
                                         System.out.println("Всего было сделано ходов: " + step);
                                         System.out.println("Осталось жизней: " + person.live);
                                         break;
+
                                     } else {
-                                        if (Monster.taskMonster(difficultGame)) {
-                                            board[person.y - 1][person.x - 1] = "  ";
-                                            person.x = x;
-                                            person.y = y;
-                                        } else {
-                                            board[person.y - 1][person.x - 1] = "  ";
-                                            person.x = x;
-                                            person.y = y;
 
+                                        if (board[y - 1][x - 1].equals(Monster.monsterr())) {
+                                            if (Monster.taskMonster(difficultGame)) {
+                                                board[person.y - 1][person.x - 1] = "  ";
+                                                person.x = x;
+                                                person.y = y;
+                                            } else {
+                                                board[person.y - 1][person.x - 1] = "  ";
+                                                person.x = x;
+                                                person.y = y;
+                                            }
+                                        } else if (board[y - 1][x - 1].equals(BigMonster.bigMonster())) {
+                                            if (BigMonster.bigTask(difficultGame)) {
+                                                board[person.y - 1][person.x - 1] = "  ";
+                                                person.x = x;
+                                                person.y = y;
+                                            } else {
+                                                board[person.y - 1][person.x - 1] = "  ";
+                                                person.x = x;
+                                                person.y = y;
+                                            }
                                         }
-                                        if (BigMonster.bigTask(difficultGame)) {
-                                            board[person.y - 1][person.x - 1] = "  ";
-                                            person.x = x;
-                                            person.y = y;
-                                        } else {
-                                            board[person.y - 1][person.x - 1] = "  ";
-                                            person.x = x;
-                                            person.y = y;
 
-                                        }
                                     }
                                 }
                             } else {
