@@ -54,8 +54,8 @@ public class Monster {
         } else if (Main.difficultGame == 2) {
             x = r.nextInt(15);
             y = r.nextInt(10);
-            trueAnswer = x + y;
-            System.out.println(x + " + " + y + " = ?");
+            trueAnswer = x - y;
+            System.out.println(x + " - " + y + " = ?");
         } else if (Main.difficultGame == 3) {
             x = r.nextInt(10);
             y = r.nextInt(10);
